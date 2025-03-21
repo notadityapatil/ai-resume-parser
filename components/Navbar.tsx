@@ -29,6 +29,11 @@ export default function Navbar() {
 <Link href="/candidatesInfo" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
   Candidates
 </Link>
+
+<Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+              Contact
+            </Link>
+
             <Link href="/about" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
               About
             </Link>
@@ -65,6 +70,10 @@ export default function Navbar() {
 <Link href="/candidatesInfo" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
   Candidates
 </Link>
+
+<Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+              Contact
+            </Link>
             <Link href="/about" className="block px-3 py-2 rounded-md text-slate-600 hover:bg-slate-50">
               About
             </Link>
