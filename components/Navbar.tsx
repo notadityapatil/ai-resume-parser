@@ -30,6 +30,10 @@ export default function Navbar() {
   Candidates
 </Link>
 
+<Link href="/tools" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Tools
+</Link>
+
 <Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
               Contact
             </Link>
@@ -69,6 +73,10 @@ export default function Navbar() {
             </Link>
 <Link href="/candidatesInfo" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
   Candidates
+</Link>
+
+<Link href="/tools" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Tools
 </Link>
 
 <Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">

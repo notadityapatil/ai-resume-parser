@@ -21,84 +21,338 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 
-
 app/page.tsx
 // code here
 'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FiArrowRight, FiFileText, FiUser, FiStar } from 'react-icons/fi';
+import { FiArrowRight, FiFileText, FiUser, FiStar, FiCheckCircle, FiUsers, FiBarChart } from 'react-icons/fi';
 
 export default function Home() {
   const features = [
-    { icon: FiFileText, title: "PDF Parsing", description: "Extract text from any resume PDF instantly" },
-    { icon: FiUser, title: "Candidate Profile", description: "Structured overview of skills and experience" },
-    { icon: FiStar, title: "AI Analysis", description: "Smart insights powered by generative AI" }
+    { icon: FiFileText, title: "Instant PDF Parsing", description: "Extract text from any resume PDF in seconds", color: "bg-blue-100" },
+    { icon: FiUser, title: "Candidate Profiles", description: "Structured overview of skills and experience", color: "bg-purple-100" },
+    { icon: FiStar, title: "AI Analysis", description: "Smart insights powered by generative AI", color: "bg-cyan-100" },
+    { icon: FiCheckCircle, title: "ATS Optimization", description: "Ensure resume compatibility with tracking systems", color: "bg-pink-100" },
+    { icon: FiUsers, title: "Team Collaboration", description: "Share and discuss candidate profiles with your team", color: "bg-orange-100" },
+    { icon: FiBarChart, title: "Analytics Dashboard", description: "Track hiring metrics and candidate pipeline", color: "bg-green-100" }
   ];
 
   return (
-    <div>
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-600/5 via-white to-white">
         <div className="max-w-7xl mx-auto text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block bg-blue-600/10 px-6 py-2 rounded-full mb-8"
+          >
+            <span className="text-blue-600 font-medium">New: AI-Powered Insights →</span>
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight"
           >
-            Transform Your Hiring Process with<br />
+            Revolutionize Your Hiring with<br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
-              AI-Powered Resume Analysis
+              Intelligent Resume Analysis
             </span>
           </motion.h1>
 
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
+            className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto"
           >
-            Automatically extract key candidate information and get intelligent insights from resumes in seconds.
+            Transform unstructured resumes into actionable insights with our AI-driven platform. Reduce screening time by 70% and identify top talent faster than ever.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
           >
             <Link
               href="/analyzer"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-xl hover:shadow-lg transition-all"
             >
-              Analyze Resume Now
               <FiArrowRight className="w-5 h-5" />
+              Start Analyzing Now
             </Link>
           </motion.div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <motion.div 
+              className="p-6 bg-white rounded-xl shadow-sm"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-3xl font-bold text-blue-600 mb-2">1K+</div>
+              <div className="text-slate-600">Resumes Analyzed</div>
+            </motion.div>
+            <motion.div 
+              className="p-6 bg-white rounded-xl shadow-sm"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-3xl font-bold text-purple-600 mb-2">85%</div>
+              <div className="text-slate-600">Time Saved</div>
+            </motion.div>
+            <motion.div 
+              className="p-6 bg-white rounded-xl shadow-sm"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-3xl font-bold text-cyan-600 mb-2">4.9★</div>
+              <div className="text-slate-600">User Rating</div>
+            </motion.div>
+            <motion.div 
+              className="p-6 bg-white rounded-xl shadow-sm"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-3xl font-bold text-green-600 mb-2">200+</div>
+              <div className="text-slate-600">Teams Empowered</div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features Grid */}
-      <section className="mt-16 grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {features.map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Powerful Features for Modern Hiring</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Everything you need to streamline your recruitment process and make data-driven hiring decisions
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className={`p-8 rounded-2xl ${feature.color} relative overflow-hidden group`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-16 h-16 rounded-xl bg-white mb-6 flex items-center justify-center shadow-sm">
+                  <feature.icon className="w-8 h-8 text-slate-700" />
+                </div>
+                <h3 className="text-2xl font-semibold text-slate-900 mb-3">{feature.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2 
+            className="text-3xl sm:text-4xl font-bold text-white mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
           >
-            <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
-              <feature.icon className="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-slate-800 mb-2">{feature.title}</h3>
-            <p className="text-slate-600">{feature.description}</p>
+            Ready to Transform Your Hiring Process?
+          </motion.h2>
+          <p className="text-lg text-blue-50 mb-8 max-w-xl mx-auto">
+            Join hundreds of companies already making smarter hiring decisions with our AI-powered platform
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link
+              href="/analyzer"
+              className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all"
+            >
+              <FiArrowRight className="w-5 h-5" />
+              Start Your Free Analysis
+            </Link>
           </motion.div>
-        ))}
+        </div>
       </section>
     </div>
   );
 }
 
+app/about\page.tsx
+// code here
+// app/about/page.tsx
+'use client';
+
+import { motion } from 'framer-motion';
+import { FiUsers, FiTarget, FiAward, FiHeart, FiGlobe } from 'react-icons/fi';
+// import TeamMemberCard from '@/components/TeamMemberCard';
+
+export default function about() {
+  const coreValues = [
+    { icon: FiTarget, title: "Our Mission", description: "Revolutionize hiring through AI-powered insights" },
+    { icon: FiAward, title: "Excellence", description: "Deliver exceptional accuracy in resume analysis" },
+    { icon: FiHeart, title: "Passion", description: "Driven by innovation in HR technology" },
+    { icon: FiGlobe, title: "Global Impact", description: "Serving teams worldwide" }
+  ];
+
+  const team = [
+    { name: "Sarah Johnson", role: "CEO & Founder", bio: "AI & HR Tech visionary", image: "/team/sarah.jpg" },
+    { name: "Michael Chen", role: "Lead Developer", bio: "Full-stack & AI specialist", image: "/team/michael.jpg" },
+    { name: "Emma Wilson", role: "Product Designer", bio: "UX & Interaction expert", image: "/team/emma.jpg" },
+    { name: "David Kim", role: "Data Scientist", bio: "NLP & ML engineer", image: "/team/david.jpg" }
+  ];
+
+  return (
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30">
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8 leading-tight"
+          >
+            Transforming Hiring Through<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+              Intelligent Technology
+            </span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto"
+          >
+            At ResumeIQ, we're redefining recruitment with AI-powered solutions that bring efficiency and insight to talent acquisition.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              className="space-y-6"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <div className="text-blue-600 text-lg font-medium">Our Journey</div>
+              <h2 className="text-3xl font-bold text-slate-900">Pioneers in AI Recruitment</h2>
+              <p className="text-slate-600 leading-relaxed">
+                Founded in 2020 by HR tech veterans, we've grown from a startup to a global platform serving 
+                500+ companies. Our AI models have analyzed over 1 million resumes, constantly learning to 
+                deliver unparalleled accuracy.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              className="grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+            >
+              <div className="bg-blue-100 p-6 rounded-2xl">
+                <div className="text-3xl font-bold text-blue-600 mb-2">1M+</div>
+                <div className="text-slate-600">Resumes Analyzed</div>
+              </div>
+              <div className="bg-purple-100 p-6 rounded-2xl">
+                <div className="text-3xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-slate-600">Happy Companies</div>
+              </div>
+              <div className="bg-cyan-100 p-6 rounded-2xl">
+                <div className="text-3xl font-bold text-cyan-600 mb-2">95%</div>
+                <div className="text-slate-600">Accuracy Rate</div>
+              </div>
+              <div className="bg-pink-100 p-6 rounded-2xl">
+                <div className="text-3xl font-bold text-pink-600 mb-2">4.9★</div>
+                <div className="text-slate-600">Average Rating</div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Core Values</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              The principles that guide every decision we make and feature we build
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {coreValues.map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
+                  <value.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">{value.title}</h3>
+                <p className="text-slate-600">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Diverse experts united by a passion for transforming recruitment
+            </p>
+          </div>
+
+          {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member, index) => (
+              <TeamMemberCard
+                key={member.name}
+                name={member.name}
+                role={member.role}
+                bio={member.bio}
+                image={member.image}
+                index={index}
+              />
+            ))}
+          </div> */}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Hiring?
+          </h2>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <a
+              href="/analyzer"
+              className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all"
+            >
+              Start Free Analysis
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
 
 app/analyzer\page.tsx
 // code here
@@ -117,9 +371,8 @@ app/candidatesInfo\page.tsx
 "use client";
 
 import { useState, useEffect } from 'react';
-import { FiTrash2, FiUserX } from 'react-icons/fi';
+import { FiTrash2, FiUserX, FiSearch, FiCheckSquare, FiMapPin, FiBook, FiBriefcase } from 'react-icons/fi';
 import Link from 'next/link';
-
 
 type Candidate = {
   id: number;
@@ -130,16 +383,38 @@ type Candidate = {
   experience?: string[];
   education?: string[];
   projects?: string[];
+  yearsOfExperience: number;
+  educationLevel: string;
+  location: string;
 };
 
-export default function candidatesInfo() {
+type ExperienceLevel = 'all' | 'entry' | 'mid' | 'senior';
+type EducationLevel = 'all' | 'highschool' | 'bachelors' | 'masters' | 'phd';
+
+export default function CandidatesInfo() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [allSkills, setAllSkills] = useState<string[]>([]);
+  const [experienceFilter, setExperienceFilter] = useState<ExperienceLevel>('all');
+  const [educationFilter, setEducationFilter] = useState<EducationLevel>('all');
+  const [locationFilter, setLocationFilter] = useState('');
 
   useEffect(() => {
     const loadCandidates = () => {
       const storedCandidates = localStorage.getItem('resumeProfiles');
       if (storedCandidates) {
-        setCandidates(JSON.parse(storedCandidates));
+        const parsedCandidates: Candidate[] = JSON.parse(storedCandidates);
+        setCandidates(parsedCandidates);
+        
+        // Extract all unique skills
+        const skills = parsedCandidates.reduce<string[]>((acc, candidate) => {
+          if (candidate.skills) {
+            return [...acc, ...candidate.skills];
+          }
+          return acc;
+        }, []);
+        setAllSkills([...new Set(skills)].sort());
       }
     };
     loadCandidates();
@@ -151,6 +426,55 @@ export default function candidatesInfo() {
     localStorage.setItem('resumeProfiles', JSON.stringify(updatedCandidates));
   };
 
+  const handleSkillToggle = (skill: string) => {
+    setSelectedSkills(prev => 
+      prev.includes(skill)
+        ? prev.filter(s => s !== skill)
+        : [...prev, skill]
+    );
+  };
+
+  const filteredCandidates = candidates.filter(candidate => {
+    // Search filter
+    const matchesSearch = 
+      (candidate.name?.toLowerCase().includes(searchQuery.toLowerCase()) || '') ||
+      (candidate.contactInfo?.toLowerCase().includes(searchQuery.toLowerCase()) || '');
+    
+    // Skills filter
+    const matchesSkills = selectedSkills.length === 0 || 
+      (candidate.skills && selectedSkills.every(skill => 
+        candidate.skills?.includes(skill)
+      ));
+    
+    // Experience level filter
+    const matchesExperience = experienceFilter === 'all' || 
+      (experienceFilter === 'entry' && candidate.yearsOfExperience <= 2) ||
+      (experienceFilter === 'mid' && candidate.yearsOfExperience > 2 && candidate.yearsOfExperience <= 5) ||
+      (experienceFilter === 'senior' && candidate.yearsOfExperience > 5);
+    
+    // Education level filter
+    const matchesEducation = educationFilter === 'all' || 
+      candidate.educationLevel.toLowerCase() === educationFilter.toLowerCase();
+    
+    // Location filter
+    const matchesLocation = !locationFilter || 
+    (candidate.location?.toLowerCase().includes(locationFilter.toLowerCase()) ?? false);
+  
+    
+    return matchesSearch && matchesSkills && matchesExperience && matchesEducation && matchesLocation;
+  });
+
+
+
+
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setSelectedSkills([]);
+    setExperienceFilter('all');
+    setEducationFilter('all');
+    setLocationFilter('');
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 p-8">
       <div className="max-w-6xl mx-auto">
@@ -159,12 +483,129 @@ export default function candidatesInfo() {
           Saved Candidates
         </h1>
 
-        {candidates.length === 0 ? (
+        {/* Search and Filter Controls */}
+        <div className="mb-6 space-y-4">
+          {/* Search and Skills Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search by name or contact..."
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <FiSearch className="absolute left-3 top-3 text-slate-400" />
+            </div>
+
+            <div className="relative group">
+              <button className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 text-left flex items-center gap-2">
+                <FiCheckSquare className="text-slate-400" />
+                {selectedSkills.length > 0 
+                  ? `${selectedSkills.length} skills selected`
+                  : "Filter by skills"}
+              </button>
+              
+              <div className="absolute hidden group-hover:block w-full mt-1 bg-white rounded-lg shadow-lg border border-slate-200 z-10 max-h-60 overflow-y-auto">
+                <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {allSkills.map(skill => (
+                    <label 
+                      key={skill}
+                      className="flex items-center gap-2 p-2 hover:bg-slate-50 rounded cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedSkills.includes(skill)}
+                        onChange={() => handleSkillToggle(skill)}
+                        className="w-4 h-4 text-blue-600 rounded border-slate-300"
+                      />
+                      <span className="text-slate-700">{skill}</span>
+                    </label>
+                  ))}
+                  {allSkills.length === 0 && (
+                    <p className="p-2 text-slate-500">No skills found in database</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Filters Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Experience Level Filter */}
+            <div className="relative">
+              <div className="flex items-center gap-2 text-slate-500 mb-1">
+                <FiBriefcase className="w-4 h-4" />
+                <span className="text-sm">Experience</span>
+              </div>
+              <select
+                value={experienceFilter}
+                onChange={(e) => setExperienceFilter(e.target.value as ExperienceLevel)}
+                className="w-full pl-3 pr-8 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Experience Levels</option>
+                <option value="entry">Entry Level (0-2 yrs)</option>
+                <option value="mid">Mid Level (3-5 yrs)</option>
+                <option value="senior">Senior Level (5+ yrs)</option>
+              </select>
+            </div>
+
+            {/* Education Level Filter */}
+            <div className="relative">
+              <div className="flex items-center gap-2 text-slate-500 mb-1">
+                <FiBook className="w-4 h-4" />
+                <span className="text-sm">Education</span>
+              </div>
+              <select
+                value={educationFilter}
+                onChange={(e) => setEducationFilter(e.target.value as EducationLevel)}
+                className="w-full pl-3 pr-8 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Education Levels</option>
+                <option value="highschool">High School</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">PhD</option>
+              </select>
+            </div>
+
+            {/* Location Filter */}
+            <div className="relative">
+              <div className="flex items-center gap-2 text-slate-500 mb-1">
+                <FiMapPin className="w-4 h-4" />
+                <span className="text-sm">Location</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Filter by location..."
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+              />
+              <FiSearch className="absolute left-3 top-9 text-slate-400" />
+            </div>
+          </div>
+
+          {/* Clear Filters Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={clearAllFilters}
+              className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+            >
+              Clear all filters
+            </button>
+          </div>
+        </div>
+
+        {filteredCandidates.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl shadow-sm">
-            <p className="text-slate-600 mb-4">No candidates found in storage</p>
-            <a href="/analyzer" className="text-blue-600 hover:text-blue-700">
-              Analyze a resume to get started
-            </a>
+            <p className="text-slate-600 mb-4">No candidates match your criteria</p>
+            <button
+              onClick={clearAllFilters}
+              className="text-blue-600 hover:text-blue-700"
+            >
+              Clear filters
+            </button>
           </div>
         ) : (
           <div className="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -175,36 +616,58 @@ export default function candidatesInfo() {
                   <th className="px-6 py-4 text-left text-slate-700 font-medium">Contact</th>
                   <th className="px-6 py-4 text-left text-slate-700 font-medium">Skills</th>
                   <th className="px-6 py-4 text-left text-slate-700 font-medium">Experience</th>
+                  <th className="px-6 py-4 text-left text-slate-700 font-medium">Education</th>
+                  <th className="px-6 py-4 text-left text-slate-700 font-medium">Location</th>
                   <th className="px-6 py-4 text-left text-slate-700 font-medium">Date Added</th>
                   <th className="px-6 py-4 text-left text-slate-700 font-medium">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {candidates.map((candidate) => (
- <tr 
- key={candidate.id} 
- className="border-t border-slate-100 hover:bg-slate-50"
->
- <td className="px-6 py-4 text-slate-800">
-   <Link 
-     href={`/candidates/${candidate.id}`}
-     className="text-blue-600 hover:text-blue-700 hover:underline"
-   >
-     {candidate.name || 'N/A'}
-   </Link>
- </td>
+                {filteredCandidates.map((candidate) => (
+                  <tr 
+                    key={candidate.id} 
+                    className="border-t border-slate-100 hover:bg-slate-50"
+                  >
+                    <td className="px-6 py-4 text-slate-800">
+                      <Link
+                        href={`/candidatesInfo/${candidate.id}`}
+                        className="text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        {candidate.name || 'N/A'}
+                      </Link>
+                    </td>
                     <td className="px-6 py-4 text-slate-600 max-w-[200px] truncate">
                       {candidate.contactInfo || 'N/A'}
                     </td>
                     <td className="px-6 py-4">
-                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
-                        {candidate.skills?.length || 0} skills
-                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {candidate.skills?.slice(0, 3).map((skill, index) => (
+                          <span 
+                            key={index}
+                            className={`px-2 py-1 rounded-full text-sm ${
+                              selectedSkills.includes(skill)
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-blue-100 text-blue-800'
+                            }`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                        {candidate.skills && candidate.skills.length > 3 && (
+                          <span className="px-2 py-1 rounded-full text-sm bg-gray-100 text-gray-800">
+                            +{candidate.skills.length - 3}
+                          </span>
+                        )}
+                      </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
-                        {candidate.experience?.length || 0} positions
-                      </span>
+                    <td className="px-6 py-4 text-slate-600">
+                      {candidate.yearsOfExperience} yrs
+                    </td>
+                    <td className="px-6 py-4 text-slate-600 capitalize">
+                      {candidate.educationLevel}
+                    </td>
+                    <td className="px-6 py-4 text-slate-600">
+                      {candidate.location}
                     </td>
                     <td className="px-6 py-4 text-slate-600">
                       {new Date(candidate.timestamp).toLocaleDateString()}
@@ -231,23 +694,17 @@ export default function candidatesInfo() {
 
 app/candidatesInfo\[id]\page.tsx
 // code here
-// app/candidates/[id]/page.tsx
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FiArrowLeft, FiUser, FiPhone, FiTool, FiBriefcase, FiBook, FiCode } from 'react-icons/fi';
+import { FiArrowLeft, FiMail, FiBriefcase, FiBook, FiCode, FiDownload, FiStar } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { Candidate } from '@/lib/types';
 
-type Candidate = {
-  id: number;
-  timestamp: string;
-  name?: string;
-  contactInfo?: string;
-  skills?: string[];
-  experience?: string[];
-  education?: string[];
-  projects?: string[];
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 
 export default function CandidateDetail() {
@@ -266,15 +723,42 @@ export default function CandidateDetail() {
     setLoading(false);
   }, [params.id]);
 
+  const handleDownload = () => {
+    if (!candidate) return;
+    const jsonString = JSON.stringify(candidate, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${candidate.name?.replace(/ /g, '_') || 'candidate'}_profile.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   if (loading) {
-    return <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 p-8">Loading...</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 p-8">
+        <div className="max-w-4xl mx-auto animate-pulse space-y-8">
+          <div className="h-12 bg-slate-200 rounded w-40 mb-8"></div>
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="space-y-4">
+              <div className="h-6 bg-slate-200 rounded w-48"></div>
+              <div className="h-4 bg-slate-200 rounded w-64"></div>
+              <div className="h-4 bg-slate-200 rounded w-72"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   if (!candidate) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 p-8">
         <div className="max-w-4xl mx-auto text-center py-12">
-          <h1 className="text-2xl font-bold text-slate-800 mb-4">Candidate not found</h1>
+          <h1 className="text-2xl font-bold text-slate-800 mb-4">
+            Candidate not found
+          </h1>
           <button
             onClick={() => router.back()}
             className="text-blue-600 hover:text-blue-700 flex items-center gap-2 justify-center"
@@ -290,61 +774,143 @@ export default function CandidateDetail() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 p-8">
       <div className="max-w-4xl mx-auto">
-        <button
+        <motion.button
           onClick={() => router.back()}
-          className="mb-8 text-blue-600 hover:text-blue-700 flex items-center gap-2"
+          className="mb-8 text-blue-600 hover:text-blue-700 flex items-center gap-2 group"
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
         >
-          <FiArrowLeft className="w-4 h-4" />
-          Back to candidates
-        </button>
+          <FiArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+          <span className="font-medium">Back to Candidates</span>
+        </motion.button>
 
         <motion.div 
-          className="bg-white rounded-xl shadow-lg p-6"
+          className="bg-white rounded-2xl shadow-lg p-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-            <FiUser className="w-8 h-8 text-blue-600" />
-            {candidate.name || 'Unnamed Candidate'}
-          </h1>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-slate-800 mb-2">
+                {candidate.name || 'Unnamed Candidate'}
+              </h1>
+              {candidate.contactInfo && (
+                <div className="flex items-center gap-2 text-slate-600">
+                  <FiMail className="w-5 h-5" />
+                  <a 
+                    href={`mailto:${candidate.contactInfo}`} 
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    {candidate.contactInfo}
+                  </a>
+                </div>
+              )}
+            </div>
+            <button
+              onClick={handleDownload}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
+            >
+              <FiDownload className="w-5 h-5" />
+              Export
+            </button>
+          </div>
 
-          <div className="space-y-6">
-            {candidate.contactInfo && (
-              <Section 
-                title="Contact Information" 
-                content={candidate.contactInfo}
-                icon={FiPhone}
-                color="bg-blue-100 text-blue-600"
-              />
+          <div className="space-y-8">
+            {candidate.skills?.length > 0 && (
+              <motion.div 
+                className="space-y-4"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <div className="flex items-center gap-3">
+                  <FiStar className="w-6 h-6 text-amber-500" />
+                  <h2 className="text-xl font-semibold text-slate-800">Skills</h2>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {candidate.skills.map((skill, index) => (
+                    <span 
+                      key={index}
+                      className="px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             )}
 
-            <Section
-              title="Skills"
-              items={candidate.skills}
-              icon={FiTool}
-              color="bg-green-100 text-green-600"
-            />
+            {candidate.experience?.length > 0 && (
+              <motion.div 
+                className="space-y-4"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <div className="flex items-center gap-3">
+                  <FiBriefcase className="w-6 h-6 text-emerald-500" />
+                  <h2 className="text-xl font-semibold text-slate-800">Experience</h2>
+                </div>
+                <ul className="space-y-4">
+                  {candidate.experience.map((exp, index) => (
+                    <li 
+                      key={index}
+                      className="pl-4 border-l-2 border-blue-200 py-2"
+                    >
+                      <p className="text-slate-600">{exp}</p>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
 
-            <Section
-              title="Experience"
-              items={candidate.experience}
-              icon={FiBriefcase}
-              color="bg-purple-100 text-purple-600"
-            />
+            {candidate.education?.length > 0 && (
+              <motion.div 
+                className="space-y-4"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <div className="flex items-center gap-3">
+                  <FiBook className="w-6 h-6 text-purple-500" />
+                  <h2 className="text-xl font-semibold text-slate-800">Education</h2>
+                </div>
+                <ul className="space-y-4">
+                  {candidate.education.map((edu, index) => (
+                    <li 
+                      key={index}
+                      className="pl-4 border-l-2 border-blue-200 py-2"
+                    >
+                      <p className="text-slate-600">{edu}</p>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
 
-            <Section
-              title="Education"
-              items={candidate.education}
-              icon={FiBook}
-              color="bg-orange-100 text-orange-600"
-            />
-
-            <Section
-              title="Projects"
-              items={candidate.projects}
-              icon={FiCode}
-              color="bg-cyan-100 text-cyan-600"
-            />
+            {candidate.projects?.length > 0 && (
+              <motion.div 
+                className="space-y-4"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <div className="flex items-center gap-3">
+                  <FiCode className="w-6 h-6 text-cyan-500" />
+                  <h2 className="text-xl font-semibold text-slate-800">Projects</h2>
+                </div>
+                <ul className="space-y-4">
+                  {candidate.projects.map((project, index) => (
+                    <li 
+                      key={index}
+                      className="pl-4 border-l-2 border-blue-200 py-2"
+                    >
+                      <p className="text-slate-600">{project}</p>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -352,62 +918,1260 @@ export default function CandidateDetail() {
   );
 }
 
-function Section({ 
-  title, 
-  content, 
-  items, 
-  icon: Icon,
-  color
-}: { 
-  title: string; 
-  content?: string; 
-  items?: string[];
-  icon: React.ElementType;
-  color: string;
-}) {
-  const hasContent = content || (items && items.length > 0);
+app/contact\page.tsx
+// code here
+// app/contact/page.tsx
+'use client';
+
+import { motion } from 'framer-motion';
+import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
+
+export default function ContactPage() {
+
+  const contactMethods = [
+    {
+      icon: FiMail,
+      title: "Email Support",
+      content: "team@resumeiq.com",
+      link: "mailto:team@resumeiq.com"
+    },
+    {
+      icon: FiPhone,
+      title: "Phone Support",
+      content: "+1 (555) 123-4567",
+      link: "tel:+15551234567"
+    },
+    {
+      icon: FiMapPin,
+      title: "HQ Location",
+      content: "San Francisco, CA",
+      link: "https://maps.app.goo.gl/example"
+    }
+  ];
 
   return (
-    <motion.div 
-      className="group relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.2 }}
-    >
-      <div className="flex gap-4">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${color}`}>
-          <Icon className="w-5 h-5" />
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30">
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8 leading-tight"
+          >
+            Get in Touch with Our<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+              Support Team
+            </span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto"
+          >
+            Have questions or need assistance? Our team is here to help you make the most of ResumeIQ's powerful features.
+          </motion.p>
         </div>
+      </section>
 
-        <div className="flex-1">
-          <h4 className="text-lg font-semibold text-slate-800 mb-2">{title}</h4>
-          
-          {!hasContent && (
-            <p className="text-slate-400 text-sm">No {title.toLowerCase()} information provided</p>
-          )}
-
-          {content && (
-            <p className="text-slate-600 mb-3 leading-relaxed">{content}</p>
-          )}
-
-          {items && items.length > 0 && (
-            <ul className="space-y-2">
-              {items.map((item, index) => (
-                <motion.li
-                  key={index}
-                  className="flex items-start before:content-['▹'] before:text-blue-400 before:mr-2 before:mt-1"
-                  whileHover={{ x: 5 }}
+      {/* Contact Content */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Contact Methods */}
+            <motion.div 
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              {contactMethods.map((method, index) => (
+                <motion.div
+                  key={method.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-slate-600">{item}</span>
-                </motion.li>
+                  <div className="flex items-start gap-6">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <method.icon className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        {method.title}
+                      </h3>
+                      <a
+                        href={method.link}
+                        className="text-slate-600 hover:text-blue-600 transition-colors"
+                      >
+                        {method.content}
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
-            </ul>
-          )}
-        </div>
-      </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-px bg-slate-100 transition-colors group-hover:bg-blue-100" />
-    </motion.div>
+              {/* Office Hours */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="p-8 bg-white rounded-2xl shadow-sm"
+              >
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                  Office Hours
+                </h3>
+                <div className="space-y-2 text-slate-600">
+                  <p>Monday - Friday: 9 AM - 6 PM PST</p>
+                  <p>Saturday: 10 AM - 2 PM PST</p>
+                  <p>Sunday: Closed</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-sm"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-8">
+                Send Us a Message
+              </h2>
+              
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    rows={5}
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  ></textarea>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                  type="submit"
+                >
+                  <FiSend className="w-5 h-5" />
+                  Send Message
+                </motion.button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl h-96"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+          >
+            {/* Replace with actual map component */}
+            <div className="w-full h-full flex items-center justify-center text-slate-600">
+              Map placeholder (integrate your preferred map service)
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Still Have Questions?
+          </h2>
+          <motion.p
+            className="text-lg text-blue-50 mb-8 max-w-xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+          >
+            Check out our comprehensive FAQ section or browse our documentation
+          </motion.p>
+          <div className="flex justify-center gap-4">
+            <motion.a
+              href="/faq"
+              className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Visit FAQ
+            </motion.a>
+            <motion.a
+              href="/docs"
+              className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Documentation
+            </motion.a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+app/tools\page.tsx
+// code here
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { 
+  FiFileText, 
+  FiSearch, 
+  FiHelpCircle, 
+  FiTrendingUp,
+  FiUsers,
+  FiBarChart2,
+  FiAward,
+  FiCheckCircle,
+  FiArrowRight
+} from 'react-icons/fi';
+
+export default function ToolsPage() {
+  const tools = [
+    {
+      icon: FiUsers,
+      title: "Multi-Resume Comparison",
+      description: "Compare multiple candidates side-by-side with visual analytics",
+      href: "/tools/comparison",
+      color: "bg-purple-100 text-purple-600",
+      available: true
+    },
+    {
+      icon: FiSearch,
+      title: "Job Description Matching",
+      description: "Match resumes against job descriptions with compatibility scoring",
+      href: "/tools/job-matching",
+      color: "bg-blue-100 text-blue-600",
+      available: true
+    },
+    {
+      icon: FiHelpCircle,
+      title: "Interview Question Generator",
+      description: "Generate tailored interview questions based on resume content",
+      href: "/tools/interview-questions",
+      color: "bg-amber-100 text-amber-600",
+      available: true
+    },
+    {
+      icon: FiTrendingUp,
+      title: "Resume Scoring & Optimization",
+      description: "Get ATS compatibility scores and optimization suggestions",
+      href: "/tools/resume-scoring",
+      color: "bg-green-100 text-green-600",
+      available: true
+    },
+    // {
+    //   icon: FiBarChart2,
+    //   title: "Skills Gap Analysis",
+    //   description: "Identify team skill gaps and training opportunities",
+    //   href: "/tools/skills-gap",
+    //   color: "bg-cyan-100 text-cyan-600",
+    //   available: false
+    // },
+    // {
+    //   icon: FiAward,
+    //   title: "Candidate Ranking",
+    //   description: "AI-powered ranking of candidates based on your criteria",
+    //   href: "/tools/candidate-ranking",
+    //   color: "bg-pink-100 text-pink-600",
+    //   available: false
+    // }
+  ];
+
+  return (
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30 min-h-screen">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight"
+          >
+            Power Up Your Hiring With<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+              Advanced Recruitment Tools
+            </span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto"
+          >
+            Our specialized tools help you streamline every stage of the hiring process with AI-powered insights.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Tools Grid */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {tools.map((tool, index) => (
+              <motion.div
+                key={tool.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className={`relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all ${!tool.available ? 'opacity-70' : ''}`}
+              >
+                <Link href={tool.available ? tool.href : '#'} className="block h-full">
+                  <div className="p-8 h-full flex flex-col">
+                    <div className={`w-14 h-14 rounded-lg mb-6 flex items-center justify-center ${tool.color}`}>
+                      <tool.icon className="w-6 h-6" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-semibold text-slate-900 mb-3">{tool.title}</h3>
+                    <p className="text-slate-600 mb-6 flex-grow">{tool.description}</p>
+                    
+                    <div className="flex items-center justify-between">
+                      {tool.available ? (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                          Available
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-slate-100 text-slate-800">
+                          Coming Soon
+                        </span>
+                      )}
+                      <span className="text-slate-400 group-hover:text-blue-600 transition-colors">
+                        <FiArrowRight className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                
+                {!tool.available && (
+                  <div className="absolute inset-0 bg-white/50 backdrop-blur-sm flex items-center justify-center">
+                    <span className="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-medium">
+                      Coming in next release
+                    </span>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Need Help Choosing the Right Tool?
+          </h2>
+          <p className="text-lg text-blue-50 mb-8 max-w-xl mx-auto">
+            Our hiring experts can guide you to the tools that best fit your recruitment workflow.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-all"
+            >
+              Contact Our Team
+            </Link>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition-all"
+            >
+              Request a Demo
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+app/tools\comparison\page.tsx
+// code here
+'use client';
+
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FiUploadCloud, FiX, FiUsers, FiBarChart2, FiAward, FiCheckCircle, FiDownload, FiArrowLeft, FiFileText } from 'react-icons/fi';
+import Link from 'next/link';
+import { extractTextFromPdf } from '@/services/pdf-service';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+type ResumeData = {
+  id: string;
+  file: File;
+  text: string;
+  name?: string;
+  analysis?: any;
+  error?: string;
+};
+
+export default function MultiResumeComparison() {
+  const [resumes, setResumes] = useState<ResumeData[]>([]);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [comparisonResult, setComparisonResult] = useState<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newResumes: ResumeData[] = [];
+      
+      for (let i = 0; i < e.target.files.length; i++) {
+        const file = e.target.files[i];
+        if (file.type === 'application/pdf') {
+          newResumes.push({
+            id: Math.random().toString(36).substring(2, 9),
+            file,
+            text: ''
+          });
+        }
+      }
+
+      setResumes([...resumes, ...newResumes]);
+    }
+  };
+
+  const removeResume = (id: string) => {
+    setResumes(resumes.filter(resume => resume.id !== id));
+  };
+
+  const analyzeResumes = async () => {
+    if (resumes.length < 2) {
+      alert('Please upload at least 2 resumes to compare');
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setComparisonResult(null);
+
+    try {
+      // First extract text from all PDFs
+      const processedResumes = await Promise.all(
+        resumes.map(async (resume) => {
+          try {
+            const text = await extractTextFromPdf(resume.file);
+            return { ...resume, text };
+          } catch (error) {
+            return { ...resume, error: 'Failed to extract text' };
+          }
+        })
+      );
+
+      setResumes(processedResumes);
+
+      // Then send to Gemini for comparison
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+      if (!apiKey) throw new Error('API key not configured');
+
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      const prompt = `
+      Analyze and compare these ${processedResumes.length} resumes. For each resume, extract:
+      1. Candidate name (if available)
+      2. Key skills (categorize as Technical, Soft, etc.)
+      3. Years of experience
+      4. Education level
+      5. Notable achievements
+      
+      Then provide a comparison table showing:
+      - Skills overlap
+      - Experience comparison
+      - Strengths/weaknesses relative to each other
+      - Overall ranking based on typical hiring criteria
+      
+      Return the analysis in this JSON format:
+      {
+        "candidates": [
+          {
+            "name": string,
+            "skills": { "technical": string[], "soft": string[] },
+            "experience": number,
+            "education": string,
+            "achievements": string[]
+          }
+        ],
+        "comparison": {
+          "skillsOverlap": string[],
+          "uniqueSkills": { "candidate1": string[], "candidate2": string[] },
+          "experienceComparison": string,
+          "ranking": [string] // names in order
+        }
+      }
+      
+      Resume texts:
+      ${processedResumes.map((r, i) => `\n\nRESUME ${i+1}:\n${r.text}`).join('')}
+      `;
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      
+      // Clean up the response to extract JSON
+      const jsonStart = text.indexOf('{');
+      const jsonEnd = text.lastIndexOf('}') + 1;
+      const jsonString = text.substring(jsonStart, jsonEnd);
+      
+      const resultData = JSON.parse(jsonString);
+      setComparisonResult(resultData);
+
+      // Update resumes with names if detected
+      setResumes(prev => prev.map((resume, i) => ({
+        ...resume,
+        name: resultData.candidates[i]?.name || `Candidate ${i+1}`,
+        analysis: resultData.candidates[i]
+      })));
+
+    } catch (error) {
+      console.error('Analysis error:', error);
+      alert('Failed to analyze resumes. Please try again.');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
+
+  return (
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-8">
+          <Link href="/tools" className="inline-flex items-center text-blue-600 hover:text-blue-700">
+            <FiArrowLeft className="mr-2" />
+            Back to Tools
+          </Link>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-xl shadow-lg overflow-hidden"
+        >
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white">
+            <div className="flex items-center gap-4">
+              <FiUsers className="w-8 h-8" />
+              <div>
+                <h1 className="text-2xl font-bold">Multi-Resume Comparison</h1>
+                <p className="opacity-90">Upload multiple resumes to compare candidates side-by-side</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="p-6">
+            {/* Upload Area */}
+            <div className="mb-8">
+              <div 
+                onClick={triggerFileInput}
+                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
+              >
+                <FiUploadCloud className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-lg font-medium text-gray-700 mb-2">Drag and drop PDF resumes here</p>
+                <p className="text-gray-500 mb-4">or click to browse files</p>
+                <button 
+                  type="button"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Select Files
+                </button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".pdf"
+                  multiple
+                />
+              </div>
+            </div>
+
+            {/* Uploaded Files List */}
+            {resumes.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Uploaded Resumes ({resumes.length})</h2>
+                <div className="space-y-3">
+                  {resumes.map((resume) => (
+                    <div key={resume.id} className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <FiFileText className="w-5 h-5 text-blue-600" />
+                        <span className="font-medium">
+                          {resume.file.name} 
+                          {resume.name && ` (${resume.name})`}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => removeResume(resume.id)}
+                        className="text-red-600 hover:text-red-800 p-1"
+                      >
+                        <FiX className="w-5 h-5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              <button
+                onClick={triggerFileInput}
+                className="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+              >
+                <FiUploadCloud className="w-5 h-5" />
+                Add More Resumes
+              </button>
+              
+              <button
+                onClick={analyzeResumes}
+                disabled={isAnalyzing || resumes.length < 2}
+                className={`px-6 py-2 rounded-lg flex items-center gap-2 ${isAnalyzing || resumes.length < 2 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+              >
+                {isAnalyzing ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Analyzing...
+                  </>
+                ) : (
+                  <>
+                    <FiBarChart2 className="w-5 h-5" />
+                    Compare Resumes
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Results Section */}
+            {comparisonResult && (
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold text-gray-800 mb-6">Comparison Results</h2>
+                
+                {/* Summary Cards */}
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <div className="flex items-center gap-3 mb-3">
+                      <FiUsers className="w-6 h-6 text-blue-600" />
+                      <h3 className="font-medium text-blue-800">Candidates Compared</h3>
+                    </div>
+                    <p className="text-3xl font-bold text-blue-900">{comparisonResult.candidates.length}</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-6 rounded-lg">
+                    <div className="flex items-center gap-3 mb-3">
+                      <FiCheckCircle className="w-6 h-6 text-green-600" />
+                      <h3 className="font-medium text-green-800">Common Skills</h3>
+                    </div>
+                    <p className="text-3xl font-bold text-green-900">{comparisonResult.comparison.skillsOverlap.length}</p>
+                  </div>
+                  
+                  <div className="bg-amber-50 p-6 rounded-lg">
+                    <div className="flex items-center gap-3 mb-3">
+                      <FiAward className="w-6 h-6 text-amber-600" />
+                      <h3 className="font-medium text-amber-800">Top Candidate</h3>
+                    </div>
+                    <p className="text-2xl font-bold text-amber-900 truncate">
+                      {comparisonResult.comparison.ranking[0]}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Detailed Comparison */}
+                <div className="space-y-8">
+                  {/* Skills Comparison */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Skills Comparison</h3>
+                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skill Type</th>
+                            {comparisonResult.candidates.map((candidate: any, index: number) => (
+                              <th key={index} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {candidate.name || `Candidate ${index+1}`}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          <tr>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Technical Skills</td>
+                            {comparisonResult.candidates.map((candidate: any, index: number) => (
+                              <td key={index} className="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                <ul className="list-disc pl-5 space-y-1">
+                                  {candidate.skills.technical.slice(0, 5).map((skill: string, i: number) => (
+                                    <li key={i}>{skill}</li>
+                                  ))}
+                                  {candidate.skills.technical.length > 5 && (
+                                    <li className="text-gray-400">+{candidate.skills.technical.length - 5} more</li>
+                                  )}
+                                </ul>
+                              </td>
+                            ))}
+                          </tr>
+                          <tr>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Soft Skills</td>
+                            {comparisonResult.candidates.map((candidate: any, index: number) => (
+                              <td key={index} className="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                <ul className="list-disc pl-5 space-y-1">
+                                  {candidate.skills.soft.slice(0, 3).map((skill: string, i: number) => (
+                                    <li key={i}>{skill}</li>
+                                  ))}
+                                </ul>
+                              </td>
+                            ))}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Experience & Education */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-4">Experience Comparison</h3>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4">
+                        <p className="text-gray-700 mb-3">{comparisonResult.comparison.experienceComparison}</p>
+                        <div className="space-y-4">
+                          {comparisonResult.candidates.map((candidate: any, index: number) => (
+                            <div key={index} className="flex items-start gap-3">
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${index === 0 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                                {index + 1}
+                              </div>
+                              <div>
+                                <p className="font-medium">{candidate.name || `Candidate ${index+1}`}</p>
+                                <p className="text-sm text-gray-600">
+                                  {candidate.experience} years experience • {candidate.education}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-4">Unique Skills</h3>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4">
+                        {comparisonResult.candidates.map((candidate: any, index: number) => (
+                          <div key={index}>
+                            <p className="font-medium mb-2">{candidate.name || `Candidate ${index+1}`}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {comparisonResult.comparison.uniqueSkills[`candidate${index+1}`]?.slice(0, 6).map((skill: string, i: number) => (
+                                <span key={i} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Download Button */}
+                  <div className="flex justify-end">
+                    <button
+                      onClick={() => {
+                        const dataStr = JSON.stringify(comparisonResult, null, 2);
+                        const blob = new Blob([dataStr], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'resume-comparison-results.json';
+                        link.click();
+                        URL.revokeObjectURL(url);
+                      }}
+                      className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
+                    >
+                      <FiDownload className="w-4 h-4" />
+                      Export Results
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+app/tools\job-matching\page.tsx
+// code here
+'use client';
+
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  FiUploadCloud, 
+  FiX, 
+  FiFileText, 
+  FiBriefcase, 
+  FiBarChart2, 
+  FiCheckCircle, 
+  FiDownload,
+  FiArrowLeft
+} from 'react-icons/fi';
+import Link from 'next/link';
+import { extractTextFromPdf } from '@/services/pdf-service';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+type ResumeData = {
+  id: string;
+  file: File;
+  text: string;
+  name?: string;
+  matchScore?: number;
+  strengths?: string[];
+  gaps?: string[];
+  error?: string;
+};
+
+export default function JobMatchingTool() {
+  const [resumes, setResumes] = useState<ResumeData[]>([]);
+  const [jobDescription, setJobDescription] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newResumes: ResumeData[] = [];
+      
+      for (let i = 0; i < e.target.files.length; i++) {
+        const file = e.target.files[i];
+        if (file.type === 'application/pdf') {
+          newResumes.push({
+            id: Math.random().toString(36).substring(2, 9),
+            file,
+            text: ''
+          });
+        }
+      }
+
+      setResumes([...resumes, ...newResumes]);
+    }
+  };
+
+  const removeResume = (id: string) => {
+    setResumes(resumes.filter(resume => resume.id !== id));
+  };
+
+  const analyzeJobMatch = async () => {
+    if (resumes.length === 0 || !jobDescription.trim()) {
+      alert('Please upload at least one resume and enter a job description');
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setAnalysisResult(null);
+
+    try {
+      // First extract text from all PDFs
+      const processedResumes = await Promise.all(
+        resumes.map(async (resume) => {
+          try {
+            const text = await extractTextFromPdf(resume.file);
+            return { ...resume, text };
+          } catch (error) {
+            return { ...resume, error: 'Failed to extract text' };
+          }
+        })
+      );
+
+      setResumes(processedResumes);
+
+      // Then send to Gemini for analysis
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+      if (!apiKey) throw new Error('API key not configured');
+
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      const prompt = `
+      Analyze and compare these ${processedResumes.length} resumes against the following job description. 
+      For each resume, calculate:
+      1. Match score (0-100%) based on required skills and qualifications
+      2. Key strengths that align with the job
+      3. Missing qualifications or gaps
+      4. Overall recommendation (Strong, Moderate, Weak match)
+      
+      Also provide:
+      - Top 3 candidates ranked by match score
+      - Common missing qualifications across candidates
+      - Suggested interview questions probing the gaps
+      
+      Job Description:
+      ${jobDescription}
+      
+      Resume texts:
+      ${processedResumes.map((r, i) => `\n\nRESUME ${i+1}:\n${r.text}`).join('')}
+      
+      Return the analysis in this JSON format:
+      {
+        "analysis": [
+          {
+            "candidateName": string,
+            "matchScore": number,
+            "strengths": string[],
+            "gaps": string[],
+            "recommendation": "Strong" | "Moderate" | "Weak"
+          }
+        ],
+        "topCandidates": string[],
+        "commonGaps": string[],
+        "interviewQuestions": string[]
+      }
+      `;
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      
+      // Clean up the response to extract JSON
+      const jsonStart = text.indexOf('{');
+      const jsonEnd = text.lastIndexOf('}') + 1;
+      const jsonString = text.substring(jsonStart, jsonEnd);
+      
+      const resultData = JSON.parse(jsonString);
+      setAnalysisResult(resultData);
+
+      // Update resumes with analysis data
+      setResumes(prev => prev.map((resume, i) => ({
+        ...resume,
+        name: resultData.analysis[i]?.candidateName || `Candidate ${i+1}`,
+        matchScore: resultData.analysis[i]?.matchScore,
+        strengths: resultData.analysis[i]?.strengths,
+        gaps: resultData.analysis[i]?.gaps
+      })));
+
+    } catch (error) {
+      console.error('Analysis error:', error);
+      alert('Failed to analyze job match. Please try again.');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
+
+  return (
+    <div className="bg-gradient-to-b from-slate-50 to-blue-50/30 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-8">
+          <Link href="/tools" className="inline-flex items-center text-blue-600 hover:text-blue-700">
+            <FiArrowLeft className="mr-2" />
+            Back to Tools
+          </Link>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-xl shadow-lg overflow-hidden"
+        >
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white">
+            <div className="flex items-center gap-4">
+              <FiBriefcase className="w-8 h-8" />
+              <div>
+                <h1 className="text-2xl font-bold">Job Description Matching</h1>
+                <p className="opacity-90">Match resumes against job descriptions with AI-powered analysis</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="p-6">
+            {/* Job Description Input */}
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Job Description</h2>
+              <textarea
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                placeholder="Paste the job description here..."
+                className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <p className="text-sm text-gray-500 mt-2">
+                Include key requirements, skills, and qualifications for accurate matching
+              </p>
+            </div>
+
+            {/* Resume Upload Area */}
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Candidate Resumes</h2>
+              <div 
+                onClick={triggerFileInput}
+                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
+              >
+                <FiUploadCloud className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-lg font-medium text-gray-700 mb-2">Upload candidate resumes (PDF)</p>
+                <p className="text-gray-500 mb-4">Drag and drop files or click to browse</p>
+                <button 
+                  type="button"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Select Files
+                </button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".pdf"
+                  multiple
+                />
+              </div>
+            </div>
+
+            {/* Uploaded Files List */}
+            {resumes.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Uploaded Resumes ({resumes.length})</h3>
+                <div className="space-y-3">
+                  {resumes.map((resume) => (
+                    <div key={resume.id} className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <FiFileText className="w-5 h-5 text-blue-600" />
+                        <span className="font-medium">
+                          {resume.file.name} 
+                          {resume.name && ` (${resume.name})`}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => removeResume(resume.id)}
+                        className="text-red-600 hover:text-red-800 p-1"
+                      >
+                        <FiX className="w-5 h-5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Action Button */}
+            <div className="flex justify-center mb-8">
+              <button
+                onClick={analyzeJobMatch}
+                disabled={isAnalyzing || resumes.length === 0 || !jobDescription.trim()}
+                className={`px-8 py-3 rounded-lg flex items-center gap-2 ${
+                  isAnalyzing || resumes.length === 0 || !jobDescription.trim() 
+                    ? 'bg-gray-300 cursor-not-allowed' 
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                {isAnalyzing ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Analyzing...
+                  </>
+                ) : (
+                  <>
+                    <FiBarChart2 className="w-5 h-5" />
+                    Analyze Job Match
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Results Section */}
+            {analysisResult && (
+              <div className="mt-8 space-y-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">Matching Results</h2>
+                
+                {/* Top Candidates */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">Top Candidates</h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {analysisResult.topCandidates.map((candidateName: string, index: number) => {
+                      const candidate = analysisResult.analysis.find((a: any) => a.candidateName === candidateName);
+                      return (
+                        <div key={index} className={`p-6 rounded-xl border ${
+                          index === 0 ? 'border-amber-300 bg-amber-50' : 
+                          index === 1 ? 'border-blue-300 bg-blue-50' : 
+                          'border-purple-300 bg-purple-50'
+                        }`}>
+                          <div className="flex items-center justify-between mb-4">
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                              index === 0 ? 'bg-amber-100 text-amber-800' : 
+                              index === 1 ? 'bg-blue-100 text-blue-800' : 
+                              'bg-purple-100 text-purple-800'
+                            }`}>
+                              #{index + 1} Rank
+                            </span>
+                            <span className={`text-lg font-bold ${
+                              index === 0 ? 'text-amber-600' : 
+                              index === 1 ? 'text-blue-600' : 
+                              'text-purple-600'
+                            }`}>
+                              {candidate.matchScore}%
+                            </span>
+                          </div>
+                          <h4 className="text-lg font-semibold mb-2">{candidateName}</h4>
+                          <p className="text-sm text-gray-600 mb-3">
+                            <span className="font-medium">Recommendation:</span> {candidate.recommendation}
+                          </p>
+                          <div className="space-y-2">
+                            <div>
+                              <p className="text-sm font-medium text-gray-700">Strengths:</p>
+                              <ul className="list-disc pl-5 text-sm text-gray-600">
+                                {candidate.strengths.slice(0, 3).map((strength: string, i: number) => (
+                                  <li key={i}>{strength}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Detailed Analysis */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Match Details */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Candidate Match Details</h3>
+                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidate</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fit</th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {analysisResult.analysis.map((candidate: any, index: number) => (
+                            <tr key={index}>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="font-medium">{candidate.candidateName}</div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="flex items-center">
+                                  <div className="w-full bg-gray-200 rounded-full h-2.5 mr-2">
+                                    <div 
+                                      className={`h-2.5 rounded-full ${
+                                        candidate.matchScore > 75 ? 'bg-green-500' :
+                                        candidate.matchScore > 50 ? 'bg-amber-500' :
+                                        'bg-red-500'
+                                      }`} 
+                                      style={{ width: `${candidate.matchScore}%` }}
+                                    ></div>
+                                  </div>
+                                  <span>{candidate.matchScore}%</span>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className={`px-2 py-1 text-xs rounded-full ${
+                                  candidate.recommendation === 'Strong' ? 'bg-green-100 text-green-800' :
+                                  candidate.recommendation === 'Moderate' ? 'bg-amber-100 text-amber-800' :
+                                  'bg-red-100 text-red-800'
+                                }`}>
+                                  {candidate.recommendation}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Common Gaps */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Common Qualification Gaps</h3>
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      {analysisResult.commonGaps.length > 0 ? (
+                        <ul className="space-y-3">
+                          {analysisResult.commonGaps.map((gap: string, index: number) => (
+                            <li key={index} className="flex items-start">
+                              <FiX className="w-5 h-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                              <span>{gap}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <div className="text-center py-4 text-gray-500">
+                          No significant common gaps found across candidates
+                        </div>
+                      )}
+                    </div>
+
+
+                  </div>
+                </div>
+
+                {/* Export Button */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => {
+                      const dataStr = JSON.stringify(analysisResult, null, 2);
+                      const blob = new Blob([dataStr], { type: 'application/json' });
+                      const url = URL.createObjectURL(blob);
+                      const link = document.createElement('a');
+                      link.href = url;
+                      link.download = 'job-matching-results.json';
+                      link.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                    className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
+                  >
+                    <FiDownload className="w-4 h-4" />
+                    Export Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -558,6 +2322,18 @@ export default function Navbar() {
             <Link href="/analyzer" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
               Resume Analyzer
             </Link>
+<Link href="/candidatesInfo" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Candidates
+</Link>
+
+<Link href="/tools" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Tools
+</Link>
+
+<Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+              Contact
+            </Link>
+
             <Link href="/about" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
               About
             </Link>
@@ -591,6 +2367,17 @@ export default function Navbar() {
             <Link href="/analyzer" className="block px-3 py-2 rounded-md text-slate-600 hover:bg-slate-50">
               Resume Analyzer
             </Link>
+<Link href="/candidatesInfo" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Candidates
+</Link>
+
+<Link href="/tools" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+  Tools
+</Link>
+
+<Link href="/contact" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">
+              Contact
+            </Link>
             <Link href="/about" className="block px-3 py-2 rounded-md text-slate-600 hover:bg-slate-50">
               About
             </Link>
@@ -600,7 +2387,6 @@ export default function Navbar() {
     </nav>
   );
 }
-
 
 app/PdfTextExtractor.tsx
 // code here
@@ -963,7 +2749,19 @@ function Section({
 
 app/types.ts
 // code here
-export type Maybe<T> = T | null;
+export type Candidate = {
+  id: number;
+  timestamp: string;
+  name?: string;
+  contactInfo?: string;
+  skills?: string[];
+  experience?: string[];
+  education?: string[];
+  projects?: string[];
+  yearsOfExperience: number,
+  educationLevel: string,
+  location: string,
+};
 
 export type SummarySections = {
   name?: string;
@@ -972,7 +2770,12 @@ export type SummarySections = {
   experience?: string[];
   education?: string[];
   projects?: string[];
+  yearsOfExperience: number,
+  educationLevel: string,
+  location: string,
 };
+
+export type Maybe<T> = T | null | undefined;
 
 app/gemini-service.ts
 // code here
@@ -993,7 +2796,10 @@ export async function generateStructuredSummary(
     "skills": string[],
     "experience": string[],
     "education": string[],
-    "projects": string[]
+    "projects": string[],
+    "yearsOfExperience": number,
+    "educationLevel": string (High School, Bachelor's Degree, Master's Degree, PhD),
+    "location": string,
   }
   
   Resume text:
@@ -1017,7 +2823,6 @@ export async function generateStructuredSummary(
     throw new Error("Failed to generate structured summary");
   }
 }
-
 
 app/pdf-service.ts
 // code here

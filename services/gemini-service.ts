@@ -15,7 +15,10 @@ export async function generateStructuredSummary(
     "skills": string[],
     "experience": string[],
     "education": string[],
-    "projects": string[]
+    "projects": string[],
+    "yearsOfExperience": number,
+"educationLevel": string (highschool, bachelors, masters, phd),
+    "location": string,
   }
   
   Resume text:
